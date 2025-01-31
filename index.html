@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catita 14Feb</title>
+    <title>Rosa Roja para San Valentín</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f9f9f9;
+            background-color: #ffe4e1; /* Color suave para el fondo */
             margin: 0;
             flex-direction: column;
             font-family: 'Arial', sans-serif;
             position: relative;
             overflow: hidden;
+            background-image: url('https://www.transparenttextures.com/patterns/diagonal-stripes-light.png'), radial-gradient(circle, #ffcccc, #ff6666);
+            background-size: cover, 100% 100%;
+            animation: backgroundAnimation 15s ease infinite; /* Animación del fondo */
+        }
+
+        /* Animación para el fondo */
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
         }
 
         /* Texto principal */
@@ -197,6 +210,28 @@
             }
         }
 
+        /* Caras de enojo decorativas */
+        .enojo {
+            position: absolute;
+            font-size: 40px;
+            animation: enojoAnimation 2s ease-out forwards;
+        }
+
+        @keyframes enojoAnimation {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
         /* Estilo de los botones */
         button {
             font-size: 20px;
@@ -253,7 +288,7 @@
         /* Texto en la esquina */
         .firma {
             position: absolute;
-            bottom: 60px; /* Cambié 20px por 60px */
+            bottom: 60px;
             right: 20px;
             font-size: 14px;
             color: #000;
@@ -324,6 +359,26 @@
             this.style.position = 'absolute';
             this.style.left = randomX + 'px';
             this.style.top = randomY + 'px';
+
+            // Crear caras de enojo aleatorias
+            for (let i = 0; i < 3; i++) { // Pocas caras de enojo
+                const enojo = document.createElement('div');
+                enojo.classList.add('enojo');
+                enojo.textContent = Math.random() > 0.5 ? '😠' : '😡';
+                document.body.appendChild(enojo);
+
+                // Posición aleatoria para las caras de enojo
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+
+                enojo.style.left = `${x}px`;
+                enojo.style.top = `${y}px`;
+
+                // Eliminar las caras de enojo después de la animación
+                setTimeout(() => {
+                    enojo.remove();
+                }, 3000);
+            }
         });
 
         // Función para mostrar el mensaje y corazones cuando se hace clic en SI
