@@ -1,1 +1,355 @@
-<h1>pablito </h1></h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa Roja para San Valentín</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            margin: 0;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Texto principal */
+        .texto {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 30px;
+            text-align: center;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Texto "Mi amor" que cambia la palabra */
+        .amor {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Animación de desvanecimiento */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Contenedor de la rosa */
+        .rosa {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform: rotate(-45deg);
+            animation: bounceIn 2s ease-out;
+        }
+
+        /* Animación de entrada rebotando */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0) rotate(-45deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(-45deg);
+            }
+            100% {
+                transform: scale(1) rotate(-45deg);
+            }
+        }
+
+        /* Pétalos */
+        .petalo {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #ff0000, #b20000);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .petalo:nth-child(1) {
+            top: 0;
+            left: 50px;
+            transform: rotate(0deg);
+        }
+
+        .petalo:nth-child(2) {
+            top: 20px;
+            left: 0;
+            transform: rotate(90deg);
+        }
+
+        .petalo:nth-child(3) {
+            top: 60px;
+            left: 0;
+            transform: rotate(180deg);
+        }
+
+        .petalo:nth-child(4) {
+            top: 20px;
+            left: 70px;
+            transform: rotate(270deg);
+        }
+
+        /* Centro de la rosa */
+        .centro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #b20000, #7a0000);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tallo */
+        .tallo {
+            position: absolute;
+            bottom: -60px;
+            left: 90px;
+            width: 15px;
+            height: 150px;
+            background: #006400;
+            border-radius: 10px;
+            animation: growTallo 2s ease-out;
+        }
+
+        /* Animación para el tallo */
+        @keyframes growTallo {
+            0% {
+                height: 0;
+            }
+            100% {
+                height: 150px;
+            }
+        }
+
+        /* Hojas */
+        .hoja {
+            position: absolute;
+            bottom: -30px;
+            width: 60px;
+            height: 30px;
+            background: #228B22;
+            border-radius: 30px;
+            transform: rotate(45deg);
+            animation: leafAnimation 2s ease-out;
+        }
+
+        /* Animación de las hojas */
+        @keyframes leafAnimation {
+            0% {
+                transform: scale(0) rotate(45deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(45deg);
+            }
+            100% {
+                transform: scale(1) rotate(45deg);
+            }
+        }
+
+        .hoja:nth-child(7) {
+            left: 40px;
+            transform: rotate(-45deg);
+        }
+
+        .hoja:nth-child(8) {
+            left: 100px;
+            transform: rotate(45deg);
+        }
+
+        /* Corazones decorativos */
+        .corazon {
+            position: absolute;
+            font-size: 40px;
+            color: #ff0000;
+            animation: heartAnimation 2s ease-out forwards;
+        }
+
+        @keyframes heartAnimation {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Estilo de los botones */
+        button {
+            font-size: 20px;
+            padding: 12px 25px;
+            margin: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .btn-no {
+            background-color: #ff0000;
+            color: white;
+        }
+
+        .btn-no:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-si {
+            background-color: #006400;
+            color: white;
+        }
+
+        .btn-si:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo para el mensaje */
+        .mensaje {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            color: #856404;
+            font-size: 18px;
+            text-align: center;
+            animation: fadeInMessage 2s ease-out;
+        }
+
+        @keyframes fadeInMessage {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Texto en la esquina */
+        .firma {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #000;
+            font-style: italic;
+            text-align: center;
+            z-index: 999;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Texto "Mi amor" que cambia -->
+    <div class="amor" id="miAmor">Mi amor</div>
+
+    <div class="texto">¿QUIERES SER MI SAN VALENTÍN?</div>
+    <div class="rosa">
+        <div class="petalo"></div>
+        <div class="petalo"></div>
+        <div class="petalo"></div>
+        <div class="petalo"></div>
+        <div class="centro"></div>
+        <div class="tallo"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+    </div>
+    
+    <!-- Botones -->
+    <div>
+        <button class="btn-no" id="btnNo">NO</button>
+        <button class="btn-si" id="btnSi">SI</button>
+    </div>
+
+    <!-- Mensaje -->
+    <div class="mensaje" id="mensaje">
+        Te quiero mucho bebita, nos vemos el 14 de febrero
+    </div>
+
+    <!-- Firma -->
+    <div class="firma">
+        De: Pablo <br> Para: Carmen; <br> Tal vez no es mucho pero me esforcé por hacerlo ❤️
+    </div>
+
+    <script>
+        // Lista de palabras que cambiarán
+        const palabras = [
+            "Amor", "Corazón", "Bebita", "Princesa", "Preciosa", "Tiquitita", "Pobetita", 
+            "Turca"
+        ];
+
+        // Función para cambiar la palabra en "Mi amor" cada 1 segundo
+        function cambiarPalabra() {
+            const miAmor = document.getElementById('miAmor');
+            setInterval(() => {
+                const palabraAleatoria = palabras[Math.floor(Math.random() * palabras.length)];
+                miAmor.textContent = `Mi ${palabraAleatoria}`;
+            }, 1000);
+        }
+
+        // Llamar a la función para cambiar la palabra
+        cambiarPalabra();
+
+        // Función para mover el botón de NO aleatoriamente
+        document.getElementById('btnNo').addEventListener('click', function() {
+            const width = window.innerWidth - this.offsetWidth;
+            const height = window.innerHeight - this.offsetHeight;
+            const randomX = Math.random() * width;
+            const randomY = Math.random() * height;
+            this.style.position = 'absolute';
+            this.style.left = randomX + 'px';
+            this.style.top = randomY + 'px';
+        });
+
+        // Función para mostrar el mensaje y corazones cuando se hace clic en SI
+        document.getElementById('btnSi').addEventListener('click', function() {
+            document.getElementById('mensaje').style.display = 'block';
+
+            // Crear corazones aleatorios
+            for (let i = 0; i < 10; i++) {
+                const corazon = document.createElement('div');
+                corazon.classList.add('corazon');
+                corazon.textContent = '❤️';
+                document.body.appendChild(corazon);
+
+                // Posición aleatoria para los corazones
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+
+                corazon.style.left = `${x}px`;
+                corazon.style.top = `${y}px`;
+
+                // Eliminar los corazones después de la animación
+                setTimeout(() => {
+                    corazon.remove();
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
